@@ -11,6 +11,7 @@ body {
     margin: 0px;
 }
 
+/* Navigation Bar */
 .nav-bar {
     width: 100%;
     display: inline-block;
@@ -49,6 +50,7 @@ body {
     padding-right: 0px;
 }
 
+/* Profile Section */
 .profile {
     background-color: #1d539f !important;
     text-align: center;
@@ -94,4 +96,114 @@ body {
     color: white;
     font-size: 50px;
     font-weight: 700;
+}
+
+/* About Section */
+.about {
+    padding: 20px;
+    background-color: #ffffff;
+    margin: 20px 0;
+}
+
+.about h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.about p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Work Experience Section */
+.work-experience {
+    padding: 20px;
+    background-color: #ffffff;
+    margin: 20px 0;
+}
+
+.work-experience h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.work-experience ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.work-experience li {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+/* Hobbies Section */
+.hobbies {
+    padding: 20px;
+    background-color: #ffffff;
+    margin: 20px 0;
+}
+
+.hobbies h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.hobby {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.hobby img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.hobby p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Education Section */
+.education {
+    padding: 20px;
+    background-color: #ffffff;
+    margin: 20px 0;
+}
+
+.education h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.education ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.education li {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+/* Travel Map Section */
+.travel-map {
+    padding: 20px;
+    background-color: #ffffff;
+    margin: 20px 0;
+}
+
+.travel-map h2 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+#map {
+    width: 100%;
+    height: 400px;
 }

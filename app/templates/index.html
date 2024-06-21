@@ -16,6 +16,9 @@
 
     <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
     <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
     <title>{{ title }}</title>
 </head>
 
@@ -36,5 +39,91 @@
         </div>
         <h1>{{ title }}</h1>
     </div>
+
+    <!-- About Section -->
+    <section class="about">
+        <h2>About Me</h2>
+        <p>Hi everyone, my name is Temitope (Temi for short). I'm a recent graduate from SUNY Oswego,<br> I majored in
+            Computer Science with a minor in Information Science. I'll soon be attending<br> Virginia Tech for my Master of
+            Engineering Degree in Computer Science and Applications.</p>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section class="work-experience">
+        <h2>Work Experience</h2>
+        <ul>
+            <li><strong>Research Assistant</strong> - Eurasia Center (June 2023 - August 2023)</li>
+        </ul>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section class="hobbies">
+        <h2>Hobbies</h2>
+        <div class="hobby">
+            <img src="./static/img/hobby1.jpg" alt="Hobby 1">
+            <p>Hanging out with friends.</p>
+        </div>
+        <div class="hobby">
+            <img src="./static/img/hobby2.jpg" alt="Hobby 2">
+            <p>Playing UNO.</p>
+        </div>
+        <div class="hobby">
+            <img src="./static/img/hobby3.jpg" alt="Hobby 3">
+            <p>Going to broadway.</p>
+        </div>
+        <div class="hobby">
+            <img src="./static/img/hobby4.jpg" alt="Hobby 4">
+            <p>Performing.</p>
+        </div>
+        <!-- Add more hobbies as needed -->
+    </section>
+
+    <!-- Education Section -->
+    <section class="education">
+        <h2>Education</h2>
+        <ul>
+            <li><strong>Bachelors Degree</strong> - State University of New York at Oswego (January 2020 - May 2024)
+            </li>
+            <li><strong>Master's Degree</strong> - Virginia Tech (August 2024 - May 2026)</li>
+        </ul>
+    </section>
+
+    <!-- Travel Map Section -->
+    <section class="travel-map">
+        <h2>Travel Map</h2>
+        <div id="map" style="height: 400px;"></div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script>
+        var map = L.map('map').setView([0, 0], 2); // Set initial map center and zoom level
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // List of locations
+        var locations = [
+            { lat: 40.7128, lon: -74.0060, popup: "New York" },
+            { lat: 38.9072, lon: -77.0369, popup: "Washington, D.C." },
+            { lat: 28.5383, lon: -81.3792, popup: "Orlando, FL" },
+            { lat: 32.7767, lon: -96.7970, popup: "Dallas, TX" },
+            { lat: 40.6331, lon: -75.7502, popup: "Allentown, PA" },
+            { lat: 40.7437, lon: -74.1885, popup: "Jackson Township, NJ" },
+            { lat: 30.4583, lon: -91.1408, popup: "Baton Rouge, LA" },
+            { lat: 43.0481, lon: -76.1474, popup: "Syracuse, NY" },
+            { lat: 43.455345, lon: -76.510498, popup: "Oswego, NY" }
+        ];
+
+        // Markers for the map
+        locations.forEach(function (location) {
+            L.marker([location.lat, location.lon]).addTo(map)
+                .bindPopup(location.popup)
+                .openPopup();
+        });
+    </script>
 </body>
+
 </html>
