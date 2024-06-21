@@ -54,6 +54,7 @@ body {
     text-align: center;
     height: 320px;
     margin-bottom: 50px;
+    margin-left: auto;
 }
 
 .profile h1 {
@@ -64,12 +65,44 @@ body {
 
 .profile img {
         border-radius: 50%;
-        max-width: 100%;
-        max-height: 100%;
+        max-width: 50%;
+        max-height: 50%;
         margin-left: auto;
         margin-right: auto;
         display: block;        
         padding: 20px;
+}
+
+.profile .emily-prof-pic {
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;        
+    padding: 20px;
+}
+
+.profile li {
+    color: #1C539F;
+    font-family: "Roboto", serif;
+    text-align: left;
+}
+
+.profile h2 {
+    color: #1C539F;
+    font-family: "Roboto", serif;
+    text-align: left;
+}
+
+.profile .about-me {
+    margin-left: 50px;
+}
+
+.profile p {
+    color: #1C539F;
+    font-family: "Roboto", serif;
+    text-align: left;
 }
 
 .profile .profile-picture {
