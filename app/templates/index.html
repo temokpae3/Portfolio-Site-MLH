@@ -36,5 +36,77 @@
         </div>
         <h1>{{ title }}</h1>
     </div>
+
+    <!-- Main content area -->
+    <div class="content">
+        <!-- Work Experience -->
+        <h2>Work Experience</h2>
+        <ul class="work-experience">
+            {% for experience in work_experiences %}
+            <li>
+                <h3>{{ experience.title }}</h3>
+                <p>{{ experience.company }} - {{ experience.location }}</p>
+                <p>{{ experience.duration }}</p>
+                <p>{{ experience.description }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Form for adding new work experience -->
+        <form method="POST" action="/add_experience">
+            <input type="text" name="title" placeholder="Title" required>
+            <input type="text" name="company" placeholder="Company" required>
+            <input type="text" name="location" placeholder="Location" required>
+            <input type="text" name="duration" placeholder="Duration" required>
+            <textarea name="description" placeholder="Description" required></textarea>
+            <button type="submit">Add Experience</button>
+        </form>
+
+        <hr>
+
+        <!-- Education -->
+        <h2>Education</h2>
+        <ul class="education">
+            {% for edu in educations %}
+            <li>
+                <h3>{{ edu.degree }}</h3>
+                <p>{{ edu.university }} - {{ edu.location }}</p>
+                <p>{{ edu.duration }}</p>
+                <p>{{ edu.description }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Form for adding new education -->
+        <form method="POST" action="/add_education">
+            <input type="text" name="degree" placeholder="Degree" required>
+            <input type="text" name="university" placeholder="University" required>
+            <input type="text" name="location" placeholder="Location" required>
+            <input type="text" name="duration" placeholder="Duration" required>
+            <textarea name="description" placeholder="Description" required></textarea>
+            <button type="submit">Add Education</button>
+        </form>
+
+        <hr>
+
+        <!-- Hobby -->
+        <h2>Hobbies</h2>
+        <ul class="hobbies">
+            {% for hobby in hobbies %}
+            <li>
+                <h3>{{ hobby.name }}</h3>
+                <p>{{ hobby.description }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <!-- Form for adding new hobby -->
+        <form method="POST" action="/add_hobby">
+            <input type="text" name="name" placeholder="Name" required>
+            <textarea name="description" placeholder="Description" required></textarea>
+            <button type="submit">Add Hobby</button>
+        </form>
+    </div>
 </body>
+
 </html>
