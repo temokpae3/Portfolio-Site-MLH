@@ -6,54 +6,26 @@ load_dotenv()
 app = Flask(__name__)
 
 # Example data for display
-work_experiences = [
-    {
-        "title": "Software Engineer",
-        "company": "ABC Inc.",
-        "location": "New York",
-        "duration": "2019 - Present",
-        "description": "Developed web applications.",
-    },
-    {
-        "title": "Data Analyst",
-        "company": "XYZ Corp.",
-        "location": "San Francisco",
-        "duration": "2017 - 2019",
-        "description": "Performed data analysis tasks.",
-    },
-]
-
-educations = [
-    {
-        "degree": "Bachelor of Science in Computer Science",
-        "university": "University of ABC",
-        "location": "Boston",
-        "duration": "2013 - 2017",
-        "description": "Studied computer science.",
-    },
-    {
-        "degree": "Master of Business Administration",
-        "university": "XYZ University",
-        "location": "Chicago",
-        "duration": "2020 - 2022",
-        "description": "Focused on business management.",
-    },
-]
-
-hobbies = [
-    {"name": "Reading", "description": "Enjoy reading books on various topics."},
-    {"name": "Hiking", "description": "Love exploring nature trails."},
-]
+work_experiences = []
+educations = []
+hobbies = []
 
 
 @app.route("/")
 def index():
-    return render_template("index.html", title="MLH Fellow", url=os.getenv("URL"))
+    return render_template(
+        "index.html",
+        title="MLH Fellow",
+        url=os.getenv("URL"),
+        work_experiences=work_experiences,
+        educations=educations,
+        hobbies=hobbies,
+    )
 
 
 @app.route("/add_experience", methods=["POST"])
 def add_experience():
-    # This handles the POST requests to add a new work experience. 
+    # This handles the POST requests to add a new work experience.
     # It extracts data from the form and appends it to the 'work_experiences' list.
     # Then, it redirects back to the index page after adding.
     new_experience = {
@@ -69,7 +41,7 @@ def add_experience():
 
 @app.route("/add_education", methods=["POST"])
 def add_education():
-    # This handles the POST requests to add more educations. 
+    # This handles the POST requests to add more educations.
     # It extracts data from the form and appends it to the 'educations' list.
     # Then, it redirects back to the index page after adding.
     new_education = {
@@ -85,7 +57,7 @@ def add_education():
 
 @app.route("/add_hobby", methods=["POST"])
 def add_hobby():
-    # This handles the POST requests to add a new hobby. 
+    # This handles the POST requests to add a new hobby.
     # It extracts data from the form and appends it to the 'hobby' list.
     # Then, it redirects back to the index page after adding.
     new_hobby = {
