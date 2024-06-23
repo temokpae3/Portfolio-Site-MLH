@@ -10,10 +10,13 @@
     <meta property="og:url" content="{{ url }}">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 
     <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
     <title>{{ title }}</title>
 </head>
@@ -23,14 +26,16 @@
         <div class="nav-content">
             <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1d529e">
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                  <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="/" style="color:White">About Me <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="/work" style="color:White">Work and Education</a>
-                    <a class="nav-item nav-link" href="/hobbies" style="color:White">Hobbies</a>
-                    <a class="nav-item nav-link disabled" href="/places" style="color:White">Cool Places I've Visited</a>
-                  </div>
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="/" style="color:White">About Me <span
+                                class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="/work" style="color:White">Work and Education</a>
+                        <a class="nav-item nav-link" href="/hobbies" style="color:White">Hobbies</a>
+                        <a class="nav-item nav-link disabled" href="/places" style="color:White">Cool Places I've
+                            Visited</a>
+                    </div>
                 </div>
-              </nav>
+            </nav>
 
 
             <a href="/">
@@ -48,152 +53,17 @@
         <h1>John Doe</h1>
     </div>
 
-<!--Example Sections with PlaceHolder Text-->
+    <!--Example Sections with PlaceHolder Text-->
     <div>
         <h3 id="about">About Me</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.</p>
-    </div>
-
-    <!-- Main content area -->
-    <div class="content">
-        <!-- Work Experience -->
-        <h2>Work Experience</h2>
-        <ul class="work-experience">
-            {% for experience in work_experiences %}
-            <li>
-                <h3>{{ experience.title }}</h3>
-                <p>{{ experience.company }} - {{ experience.location }}</p>
-                <p>{{ experience.duration }}</p>
-                <p>{{ experience.description }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-
-        <!-- Form for adding new work experience -->
-        <form method="POST" action="/add_experience">
-            <input type="text" name="title" placeholder="Title" required>
-            <input type="text" name="company" placeholder="Company" required>
-            <input type="text" name="location" placeholder="Location" required>
-            <input type="text" name="duration" placeholder="Duration" required>
-            <textarea name="description" placeholder="Description" required></textarea>
-            <button type="submit">Add Experience</button>
-        </form>
-
-        <hr>
-
-        <!-- Education -->
-        <h2>Education</h2>
-        <ul class="education">
-            {% for edu in educations %}
-            <li>
-                <h3>{{ edu.degree }}</h3>
-                <p>{{ edu.university }} - {{ edu.location }}</p>
-                <p>{{ edu.duration }}</p>
-                <p>{{ edu.description }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-
-        <!-- Form for adding new education -->
-        <form method="POST" action="/add_education">
-            <input type="text" name="degree" placeholder="Degree" required>
-            <input type="text" name="university" placeholder="University" required>
-            <input type="text" name="location" placeholder="Location" required>
-            <input type="text" name="duration" placeholder="Duration" required>
-            <textarea name="description" placeholder="Description" required></textarea>
-            <button type="submit">Add Education</button>
-        </form>
-
-        <hr>
-
-        <!-- Hobby -->
-        <h2>Hobbies</h2>
-        <ul class="hobbies">
-            {% for hobby in hobbies %}
-            <li>
-                <h3>{{ hobby.name }}</h3>
-                <p>{{ hobby.description }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-
-        <!-- Form for adding new hobby -->
-        <form method="POST" action="/add_hobby">
-            <input type="text" name="name" placeholder="Name" required>
-            <textarea name="description" placeholder="Description" required></textarea>
-            <button type="submit">Add Hobby</button>
-       </form>
-    </div>
-
-    <!-- Main content area -->
-    <div class="content">
-        <!-- Work Experience -->
-        <h2>Work Experience</h2>
-        <ul class="work-experience">
-            {% for experience in work_experiences %}
-            <li>
-                <h3>{{ experience.title }}</h3>
-                <p>{{ experience.company }} - {{ experience.location }}</p>
-                <p>{{ experience.duration }}</p>
-                <p>{{ experience.description }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-
-        <!-- Form for adding new work experience -->
-        <form method="POST" action="/add_experience">
-            <input type="text" name="title" placeholder="Title" required>
-            <input type="text" name="company" placeholder="Company" required>
-            <input type="text" name="location" placeholder="Location" required>
-            <input type="text" name="duration" placeholder="Duration" required>
-            <textarea name="description" placeholder="Description" required></textarea>
-            <button type="submit">Add Experience</button>
-        </form>
-
-        <hr>
-
-        <!-- Education -->
-        <h2>Education</h2>
-        <ul class="education">
-            {% for edu in educations %}
-            <li>
-                <h3>{{ edu.degree }}</h3>
-                <p>{{ edu.university }} - {{ edu.location }}</p>
-                <p>{{ edu.duration }}</p>
-                <p>{{ edu.description }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-
-        <!-- Form for adding new education -->
-        <form method="POST" action="/add_education">
-            <input type="text" name="degree" placeholder="Degree" required>
-            <input type="text" name="university" placeholder="University" required>
-            <input type="text" name="location" placeholder="Location" required>
-            <input type="text" name="duration" placeholder="Duration" required>
-            <textarea name="description" placeholder="Description" required></textarea>
-            <button type="submit">Add Education</button>
-        </form>
-
-        <hr>
-
-        <!-- Hobby -->
-        <h2>Hobbies</h2>
-        <ul class="hobbies">
-            {% for hobby in hobbies %}
-            <li>
-                <h3>{{ hobby.name }}</h3>
-                <p>{{ hobby.description }}</p>
-            </li>
-            {% endfor %}
-        </ul>
-
-        <!-- Form for adding new hobby -->
-        <form method="POST" action="/add_hobby">
-            <input type="text" name="name" placeholder="Name" required>
-            <textarea name="description" placeholder="Description" required></textarea>
-            <button type="submit">Add Hobby</button>
-       </form>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim
+            sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius
+            a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non
+            fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a,
+            enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue.
+            Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales.
+            Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris
+            ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.</p>
     </div>
 </body>
 
