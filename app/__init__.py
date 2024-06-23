@@ -22,7 +22,7 @@ def index():
     )
 
 
-@app.route("/add_experience", methods=["POST"])
+@app.route("/add_experience", methods=["GET", "POST"])
 def add_experience():
     # This handles the POST requests to add a new work experience.
     # It extracts data from the form and appends it to the 'work_experiences' list.
@@ -38,7 +38,7 @@ def add_experience():
     return redirect(url_for("index"))
 
 
-@app.route("/add_education", methods=["POST"])
+@app.route("/add_education", methods=["GET", "POST"])
 def add_education():
     # This handles the POST requests to add more educations.
     # It extracts data from the form and appends it to the 'educations' list.
@@ -54,7 +54,7 @@ def add_education():
     return redirect(url_for("index"))
 
 
-@app.route("/add_hobby", methods=["POST"])
+@app.route("/add_hobby", methods=["GET", "POST"])
 def add_hobby():
     # This handles the POST requests to add a new hobby.
     # It extracts data from the form and appends it to the 'hobby' list.
