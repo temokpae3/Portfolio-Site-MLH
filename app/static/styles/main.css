@@ -9,6 +9,11 @@ button {
   font-family: "Roboto", serif;
 }
 
+a {
+    font-family: "Roboto", serif;
+    color: white;
+}
+
 body {
   background-color: #f5f5f9;
   background-size: cover;
