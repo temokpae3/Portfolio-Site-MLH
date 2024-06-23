@@ -11,15 +11,3 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
-
-@app.route('/work')
-def work():
-    return render_template('work.html', title="MLH Fellow", url=os.getenv("URL"))
-
-@app.route('/hobbies')
-def hobbies():
-    return render_template('hobbies.html', title="MLH Fellow", url=os.getenv("URL"))
-
-@app.route('/places')
-def places():
-    return render_template('places.html', title="MLH Fellow", url=os.getenv("URL"))
