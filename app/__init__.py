@@ -19,7 +19,6 @@ def index():
         url=os.getenv("URL"),
     )
 
-
 @app.route("/work", methods=["GET", "POST"])
 def work():
     # This handles the POST requests to add a new work experience and education.
@@ -44,7 +43,7 @@ def work():
                 "description": request.form["description"],
             }
             educations.append(new_education)
-        return redirect(url_for("work"))  # Redirect to GET /work after POST
+        return redirect(url_for("work"))
 
     return render_template(
         "work.html",
