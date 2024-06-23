@@ -10,9 +10,6 @@ work_experiences = []
 educations = []
 hobbies = []
 
-# $ export FLASK_ENV=development
-# $ flask run
-
 @app.route("/")
 def index():
     return render_template(
