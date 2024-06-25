@@ -7,6 +7,7 @@ h5,
 h6,
 button {
   font-family: "Roboto", serif;
+  padding: 0px 30px
 }
 
 a {
@@ -29,7 +30,6 @@ body {
   background-color: #1c539f;
   font-family: "Roboto", serif;
   font-weight: 700 !important;
-  padding-top: 10px;
 }
 
 .nav-content .logo-touch-target {
@@ -60,6 +60,8 @@ body {
     padding-top: 0px;
     padding-right: 0px;
     margin: auto;
+    padding-top: 10px;
+    background-color:#294c91;
 }
 
 .profile {
@@ -88,6 +90,10 @@ body {
 .profile .profile-picture {
   margin-bottom: 30px;
   height: 200px;
+}
+
+.hobbies img {
+  height: 300px;
 }
 
 .banner {

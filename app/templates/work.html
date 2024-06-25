@@ -24,7 +24,7 @@
 <body>
     <header class="nav-bar">
         <div class="nav-content">
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1d529e">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link active" href="/" style="color:White">About Me <span
@@ -48,16 +48,27 @@
 
     <div class="profile">
         <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/logo.jpg">
+            <img src="./static/img/myself.jpg">
         </div>
-        <h1>John Doe</h1>
+        <h1>Kevin Wang</h1>
     </div>
 
-    <!--Example Section with PlaceHolder Text-->
     <div class="content">
         <!-- Work Experience -->
         <h2>Work Experience</h2>
         <ul class="work-experience">
+            <li>
+                <h3>Design Team Member</h3>
+                <p>QMIND Computer Vision - Ontario, Canada</p>
+                <p>Oct 2023 - Present</p>
+                <ul>
+                    <li>Implemented Pytorch for Computer Vision using Jupyter Notebook</li>
+                    <li>Trained and helped create AI model that categorized and corrected images successfully </li>
+                    <li>Researched dataset characteristics and trimmed outliers from database</li>
+                    <li>Assisted with creating the related research paper</li>
+                </ul>
+            </li>
+
             {% for experience in work_experiences %}
             <li>
                 <h3>{{ experience.title }}</h3>
@@ -83,6 +94,16 @@
         <!-- Education -->
         <h2>Education</h2>
         <ul class="education">
+            <li>
+                <h3>Computing Degree</h3>
+                <p>Queen's University</p>
+            </li>
+
+            <li>
+                <h3>School of AI Graduate</h3>
+                <p>QMIND</p>
+            </li>
+
             {% for edu in educations %}
             <li>
                 <h3>{{ edu.degree }}</h3>

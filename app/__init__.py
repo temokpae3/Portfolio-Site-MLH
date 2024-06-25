@@ -61,8 +61,9 @@ def hobbies_page():
             "description": request.form["description"],
         }
         hobbies.append(new_hobby)
-        return redirect(url_for('hobbies'))
+        return redirect(url_for('hobbies_page'))
     return render_template('hobbies.html', title="Hobbies", hobbies=hobbies, url=os.getenv("URL"))
+
 
 
 @app.route('/places')

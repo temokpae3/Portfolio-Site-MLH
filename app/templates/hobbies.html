@@ -24,7 +24,7 @@
 <body>
     <header class="nav-bar">
         <div class="nav-content">
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #1d529e">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link active" href="/" style="color:White">About Me <span
@@ -47,14 +47,21 @@
 
     <div class="profile">
         <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/logo.jpg">
+            <img src="./static/img/myself.jpg">
         </div>
-        <h1>John Doe</h1>
+        <h1>Kevin Wang</h1>
     </div>
 
-    <!--Example Section with PlaceHolder Text-->
     <h2>Hobbies</h2>
     <ul class="hobbies">
+        <li>
+            <h3>Lane Swimming</h3>
+            <img src="./static/img/swimming.jpg">
+        </li>
+        <li>
+            <h3>Casual and/or Competitive Chess</h3>
+            <img src="./static/img/chess.jpg">
+        </li>
         {% for hobby in hobbies %}
         <li>
             <h3>{{ hobby.name }}</h3>
