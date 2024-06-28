@@ -6,16 +6,55 @@ load_dotenv()
 app = Flask(__name__)
 
 # Example data for display
-work_experiences = []
-educations = []
-hobbies = []
+work_experiences = [
+    {
+        "title": "Production Engineering Fellow",
+        "company": "Major League Hacking",
+        "location": "Remote",
+        "duration": "June 2024 - Present",
+    }
+]
 
+educations = [
+    {
+        "degree": "Master of Engineering in Computer Science",
+        "university": "Virginia Tech",
+        "location": "Falls Church, VA",
+        "duration": "August 2024 - May 2026",
+    },
+    {
+        "degree": "Bachelor of Science in Computer Science",
+        "university": "State University of New York at Oswego",
+        "location": "Oswego, NY",
+        "duration": "January 2020 - May 2024",
+        "description": "Graduated with Latin Honors Cum Laude. GPA: 3.34 GPA."
+    }
+]
+
+hobbies = [
+    {
+        "name": "Hanging out with friends",
+        "image_url": "./img/hobby1.jpg"
+    },
+    {
+        "name": "Playing UNO",
+        "image_url": "./img/hobby2.jpg"
+    },
+    {
+        "name": "Going to broadway",
+        "image_url": "./img/hobby3.jpg"
+    },
+    {
+        "name": "Performing",
+        "image_url": "./img/hobby4.jpg"
+    }
+]
 
 @app.route("/")
 def index():
     return render_template(
         "index.html",
-        title="MLH Fellow",
+        title="Temitope Emokpae",
         url=os.getenv("URL"),
     )
 
@@ -58,14 +97,14 @@ def hobbies_page():
     if request.method == 'POST':
         new_hobby = {
             "name": request.form["name"],
-            "description": request.form["description"],
+            "image_url": request.form["image_url"]
         }
         hobbies.append(new_hobby)
-        return redirect(url_for('hobbies'))
+        return redirect(url_for('hobbies_page'))
     return render_template('hobbies.html', title="Hobbies", hobbies=hobbies, url=os.getenv("URL"))
 
 
 @app.route('/places')
 def places():
-    return render_template('places.html', title="MLH Fellow", url=os.getenv("URL"))
+    return render_template('places.html', title="Cool Places I've Visited", url=os.getenv("URL"))
 

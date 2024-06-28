@@ -49,7 +49,7 @@
         <div id="profile-picture" class="profile-picture">
             <img src="./static/img/logo.jpg">
         </div>
-        <h1>John Doe</h1>
+        <h1>{{ title }}</h1>
     </div>
 
     <!--Example Section with PlaceHolder Text-->
@@ -58,7 +58,11 @@
         {% for hobby in hobbies %}
         <li>
             <h3>{{ hobby.name }}</h3>
-            <p>{{ hobby.description }}</p>
+            {% if hobby.image_url.startswith('http') %}
+            <img src="{{ hobby.image_url }}" alt="{{ hobby.name }}" class="hobby-image">
+            {% else %}
+            <img src="{{ url_for('static', filename=hobby.image_url) }}" alt="{{ hobby.name }}" class="hobby-image">
+            {% endif %}
         </li>
         {% endfor %}
     </ul>
@@ -66,7 +70,7 @@
     <!-- Form for adding a new hobby -->
     <form method="POST" action="/hobbies">
         <input type="text" name="name" placeholder="Name" required>
-        <textarea name="description" placeholder="Description" required></textarea>
+        <input type="text" name="image_url" placeholder="Image URL" required>
         <button type="submit">Add Hobby</button>
     </form>
 </body>
