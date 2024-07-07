@@ -9,6 +9,18 @@ button {
   font-family: "Roboto", serif;
 }
 
+#about {
+  text-align: center;
+}
+
+div p {
+  text-align: center;
+}
+
+.content ul li p {
+  text-align: left;
+}
+
 a {
     font-family: "Roboto", serif;
     color: white;
