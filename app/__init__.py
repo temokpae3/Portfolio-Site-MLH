@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from peewee import *
 import datetime
 from playhouse.shortcuts import model_to_dict
+import hashlib
 
 load_dotenv()
 app = Flask(__name__)
@@ -27,6 +28,13 @@ class TimelinePost(Model):
         database = mydb
 mydb.connect()
 mydb.create_tables([TimelinePost])
+
+# Custom Jinja filter
+def md5_hash(email):
+    return hashlib.md5(email.strip().lower().encode('utf-8')).hexdigest()
+
+# Register the filter with Jinja
+app.jinja_env.filters['md5'] = md5_hash
 
 # Example data for display
 work_experiences = [
@@ -150,18 +158,13 @@ def get_time_line_post():
 
 @app.route('/api/timeline_post/<int:post_id>', methods=['DELETE'])
 def delete_time_line_post(post_id):
-    try:
-        timeline_post = TimelinePost.get_by_id(post_id)
-        timeline_post.delete_instance()
-        return {
-            'message': f'Timeline post with ID {post_id} deleted successfully.'
-        }
-    except DoesNotExist:
-        return {
-            'error': f'Timeline post with ID {post_id} does not exist.'
-        }, 404
-    except Exception as e:
-        return {
-            'error': f'Failed to delete timeline post with ID {post_id}. Error: {str(e)}'
-        }, 500
+    timeline_post = TimelinePost.get_by_id(post_id)
+    timeline_post.delete_instance()
+    return {
+        'message': f'Timeline post with ID {post_id} deleted successfully.'
+    }
 
+@app.route('/timeline')
+def timeline():
+    timeline_posts = get_time_line_post()['timeline_posts']
+    return render_template('timeline.html', title="Timeline", timeline_posts=timeline_posts)
