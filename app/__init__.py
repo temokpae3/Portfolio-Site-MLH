@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, json
 from dotenv import load_dotenv
 from peewee import *
 import datetime
@@ -9,12 +9,17 @@ import hashlib
 load_dotenv()
 app = Flask(__name__)
 
-mydb = MySQLDatabase(
-    user=os.getenv("MYSQL_USER"),
-    password=os.getenv("MYSQL_PASSWORD"),
-    host=os.getenv("MYSQL_HOST"),
-    database=os.getenv("MYSQL_DATABASE"),
-)
+if os.getenv("TESTING") == "true":
+    print("Running in test mode")
+    mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
+else:
+    mydb = MySQLDatabase(
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        host=os.getenv("MYSQL_HOST"),
+        database=os.getenv("MYSQL_DATABASE"),
+        port=3306
+    )
 
 print(mydb)
 
@@ -142,8 +147,17 @@ def places():
 @app.route('/api/timeline_post', methods=['POST'])
 def post_time_line_post():
     name = request.form['name']
+    
+    if not name or len(name) == 0:
+        return render_template('400.html'), 400 
+    
     email = request.form['email']
+    if not '@' in email:
+        return render_template('400.html', message="Invalid email"), 400
+    
     content = request.form['content']
+    if len(content) == 0:
+        return render_template('400.html', message="Invalid content"), 400
     timeline_post = TimelinePost.create(name=name, email=email, content=content)
     
     return model_to_dict(timeline_post)
@@ -168,3 +182,16 @@ def delete_time_line_post(post_id):
 def timeline():
     timeline_posts = get_time_line_post()['timeline_posts']
     return render_template('timeline.html', title="Timeline", timeline_posts=timeline_posts)
+
+@app.errorhandler(400)
+def error_handler(*args):
+    if not 'name' in request.values:
+        return render_template('400.html', message="Invalid name"), 400
+    
+    if not 'content' in request.values == 0:
+        return render_template('400.html', message="Invalid content"), 400
+    
+    if not 'email' in request.values:
+        return render_template('400.html', message="Invalid email"), 400
+
+    return render_template('400.html', message="Unknown Error Type"), 400
