@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, redirect, url_for, json
+from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
 from peewee import *
 import datetime
