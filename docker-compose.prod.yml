@@ -33,8 +33,7 @@ services:
       - nginx_secrets:/etc/letsencrypt
       - ./user_conf.d:/etc/nginx/user_conf.d
     depends_on:
-      - portfolio_site_mlh 
-
+      - portfolio-site-mlh 
 
 volumes:
   mydatabase:
