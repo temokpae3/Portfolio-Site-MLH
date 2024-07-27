@@ -12,8 +12,8 @@ pip install -r requirements.txt
 deactivate
 
 # Restart the service
-systemctl daemon-reload
+docker compose -f docker-compose.prod.yml down
 
-systemctl restart myportfolio
+docker compose -f docker-compose.prod.yml up -d --build
 
 echo "Deployment script executed successfully."
