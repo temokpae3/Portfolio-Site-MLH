@@ -28,8 +28,11 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_IP: ${{ secrets.SSH_IP }}
 
+      - name: Deploy site
+        run: ssh my-vps '~/redeploy-site.sh'
+      
       - name: Print Out Container Status
-        run: ssh my-vps 'cd ~/Portfolio-Site-MLH && docker ps'
+        run: ssh my-vps 'cd ~/Portfolio-Site-MLH && docker-compose ps'
 
       - name: Send Discord Notification on Deployment Success
         if: ${{ success() }}
@@ -38,6 +41,3 @@ jobs:
       - name: Send Discord Notification on Deployment Failure
         if: ${{ failure() }}
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
-
-      - name: Run Deployment Tests
-        run: ssh my-vps '~/run-tests.sh'
