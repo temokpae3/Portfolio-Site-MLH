@@ -53,9 +53,9 @@ work_experiences = [
 
 educations = [
     {
-        "degree": "Master of Engineering in Computer Science",
+        "degree": "Master of Engineering in Computer Science and Application",
         "university": "Virginia Tech",
-        "location": "Falls Church, VA",
+        "location": "Blacksburg, VA (D.C. Campus)",
         "duration": "August 2024 - May 2026",
     },
     {
