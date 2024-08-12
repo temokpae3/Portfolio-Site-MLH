@@ -40,5 +40,4 @@ jobs:
         run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
 
       - name: Run Deployment Tests
-        if: ${{ success() }}
         run: ssh my-vps '~/run-tests.sh'
