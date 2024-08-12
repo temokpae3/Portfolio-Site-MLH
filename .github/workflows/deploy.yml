@@ -29,7 +29,7 @@ jobs:
           SSH_IP: ${{ secrets.SSH_IP }}
 
       - name: Print Out Container Status
-        run: ssh my-vps 'cd ~/Portfolio-Site-MLH && docker-compose ps'
+        run: ssh my-vps 'cd ~/Portfolio-Site-MLH && docker ps'
 
       - name: Send Discord Notification on Deployment Success
         if: ${{ success() }}
