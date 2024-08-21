@@ -1,4 +1,5 @@
 import os
+import requests
 from flask import Flask, render_template, request, redirect, url_for
 from dotenv import load_dotenv
 from peewee import *
@@ -196,16 +197,49 @@ def error_handler(*args):
 
     return render_template('400.html', message="Unknown Error Type"), 400
 
+# Health Check Endpoint
 @app.route('/health', methods=['GET'])
 def health_check():
+    statuses = []
+    
+    # Check the main application (self-check)
     try:
-        # Check the connection to the database
         mydb.connect(reuse_if_open=True)
         mydb.execute_sql('SELECT 1')
-        status = "success"
-        message = "All systems operational"
+        statuses.append({'service': 'Database', 'status': 'Operational'})
     except Exception as e:
-        status = "fail"
-        message = f"Database connection failed: {str(e)}"
+        statuses.append({'service': 'Database', 'status': f'Error: {str(e)}'})
     
-    return render_template('health.html', status=status, message=message)
+    # Check the portfolio-site-mlh container
+    try:
+        response = requests.get('http://localhost:5000/health')
+        if response.status_code == 200:
+            statuses.append({'service': 'Portfolio Site', 'status': 'Operational'})
+        else:
+            statuses.append({'service': 'Portfolio Site', 'status': 'Unhealthy'})
+    except Exception as e:
+        statuses.append({'service': 'Portfolio Site', 'status': f'Error: {str(e)}'})
+
+    # Check the mysql container
+    try:
+        response = requests.get('http://localhost:3306/health')
+        if response.status_code == 200:
+            statuses.append({'service': 'MySQL', 'status': 'Operational'})
+        else:
+            statuses.append({'service': 'MySQL', 'status': 'Unhealthy'})
+    except Exception as e:
+        statuses.append({'service': 'MySQL', 'status': f'Error: {str(e)}'})
+
+    # Check the nginx container
+    try:
+        response = requests.get('http://localhost:80/health')
+        if response.status_code == 200:
+            statuses.append({'service': 'Nginx', 'status': 'Operational'})
+        else:
+            statuses.append({'service': 'Nginx', 'status': 'Unhealthy'})
+    except Exception as e:
+        statuses.append({'service': 'Nginx', 'status': f'Error: {str(e)}'})
+
+    # Render the health status in a template
+    overall_status = all(service['status'] == 'Operational' for service in statuses)
+    return render_template('health.html', status='Operational' if overall_status else 'Degraded', services=statuses)

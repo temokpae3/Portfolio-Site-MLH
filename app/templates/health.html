@@ -10,7 +10,13 @@
 <body>
     <h1>Health Check</h1>
     <p>Status: {{ status }}</p>
-    <p>{{ message }}</p>
+    <ul>
+        {% for service in services %}
+        <li>
+            {{ service.service }}: {{ service.status }}
+        </li>
+        {% endfor %}
+    </ul>
 </body>
 
 </html>
