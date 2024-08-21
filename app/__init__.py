@@ -195,3 +195,17 @@ def error_handler(*args):
         return render_template('400.html', message="Invalid email"), 400
 
     return render_template('400.html', message="Unknown Error Type"), 400
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    try:
+        # Check the connection to the database
+        mydb.connect(reuse_if_open=True)
+        mydb.execute_sql('SELECT 1')
+        status = "success"
+        message = "All systems operational"
+    except Exception as e:
+        status = "fail"
+        message = f"Database connection failed: {str(e)}"
+    
+    return render_template('health.html', status=status, message=message)
