@@ -210,35 +210,16 @@ def health_check():
     except Exception as e:
         statuses.append({'service': 'Database', 'status': f'Error: {str(e)}'})
     
-    # Check the portfolio-site-mlh container
+    # Check Nginx
     try:
-        response = requests.get('http://app:5000/health')
-        if response.status_code == 200:
-            statuses.append({'service': 'Portfolio Site', 'status': 'Operational'})
-        else:
-            statuses.append({'service': 'Portfolio Site', 'status': 'Unhealthy'})
-    except Exception as e:
-        statuses.append({'service': 'Portfolio Site', 'status': f'Error: {str(e)}'})
-
-    # Check the mysql container
-    try:
-        response = requests.get('http://mysql:3306/health')
-        if response.status_code == 200:
-            statuses.append({'service': 'MySQL', 'status': 'Operational'})
-        else:
-            statuses.append({'service': 'MySQL', 'status': 'Unhealthy'})
-    except Exception as e:
-        statuses.append({'service': 'MySQL', 'status': f'Error: {str(e)}'})
-
-    # Check the nginx container
-    try:
-        response = requests.get('http://nginx:80/health')
+        response = requests.get('http://localhost:80')
         if response.status_code == 200:
             statuses.append({'service': 'Nginx', 'status': 'Operational'})
         else:
-            statuses.append({'service': 'Nginx', 'status': 'Unhealthy'})
+            statuses.append({'service': 'Nginx', 'status': 'Error: Non-200 response'})
     except Exception as e:
         statuses.append({'service': 'Nginx', 'status': f'Error: {str(e)}'})
+
 
     # Put the health status in a template
     overall_status = all(service['status'] == 'Operational' for service in statuses)
