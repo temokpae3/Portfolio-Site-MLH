@@ -212,7 +212,7 @@ def health_check():
     
     # Check the portfolio-site-mlh container
     try:
-        response = requests.get('http://localhost:5000/health')
+        response = requests.get('http://portfolio-site-mlh-app:5000/health')
         if response.status_code == 200:
             statuses.append({'service': 'Portfolio Site', 'status': 'Operational'})
         else:
@@ -222,7 +222,7 @@ def health_check():
 
     # Check the mysql container
     try:
-        response = requests.get('http://localhost:3306/health')
+        response = requests.get('http://mysql_db:3306/health')
         if response.status_code == 200:
             statuses.append({'service': 'MySQL', 'status': 'Operational'})
         else:
@@ -232,7 +232,7 @@ def health_check():
 
     # Check the nginx container
     try:
-        response = requests.get('http://localhost:80/health')
+        response = requests.get('http://nginx:80/health')
         if response.status_code == 200:
             statuses.append({'service': 'Nginx', 'status': 'Operational'})
         else:
@@ -240,6 +240,6 @@ def health_check():
     except Exception as e:
         statuses.append({'service': 'Nginx', 'status': f'Error: {str(e)}'})
 
-    # Render the health status in a template
+    # Put the health status in a template
     overall_status = all(service['status'] == 'Operational' for service in statuses)
     return render_template('health.html', status='Operational' if overall_status else 'Degraded', services=statuses)
