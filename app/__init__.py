@@ -212,7 +212,7 @@ def health_check():
     
     # Check the portfolio-site-mlh container
     try:
-        response = requests.get('http://portfolio-site-mlh-app:5000/health')
+        response = requests.get('http://pe-week1-temitope.duckdns.org:5000/health')
         if response.status_code == 200:
             statuses.append({'service': 'Portfolio Site', 'status': 'Operational'})
         else:
@@ -222,7 +222,7 @@ def health_check():
 
     # Check the mysql container
     try:
-        response = requests.get('http://mysql_db:3306/health')
+        response = requests.get('http://mysql:3306/health')
         if response.status_code == 200:
             statuses.append({'service': 'MySQL', 'status': 'Operational'})
         else:
@@ -232,7 +232,7 @@ def health_check():
 
     # Check the nginx container
     try:
-        response = requests.get('http://nginx:80/health')
+        response = requests.get('http://pe-week1-temitope.duckdns.org:80/health')
         if response.status_code == 200:
             statuses.append({'service': 'Nginx', 'status': 'Operational'})
         else:
