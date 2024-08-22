@@ -202,14 +202,15 @@ def error_handler(*args):
 def health_check():
     statuses = []
     
-    # Check the main application (self-check)
+    # Check the Nginx service
     try:
-        mydb.connect(reuse_if_open=True)
-        mydb.execute_sql('SELECT 1')
-        statuses.append({'service': 'Database', 'status': 'Operational'})
+        nginx_response = requests.get('http://nginx/health', timeout=5)
+        if nginx_response.status_code == 200:
+            statuses.append({'service': 'Nginx', 'status': 'Operational'})
+        else:
+            statuses.append({'service': 'Nginx', 'status': f'Error: Status code {nginx_response.status_code}'})
     except Exception as e:
-        statuses.append({'service': 'Database', 'status': f'Error: {str(e)}'})
-
+        statuses.append({'service': 'Nginx', 'status': f'Error: {str(e)}'})
 
     # Put the health status in a template
     overall_status = all(service['status'] == 'Operational' for service in statuses)
