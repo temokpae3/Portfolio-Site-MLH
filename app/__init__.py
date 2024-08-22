@@ -212,7 +212,7 @@ def health_check():
     
     # Check the Nginx service
     try:
-        nginx_response = requests.get('https://pe-week1-temitope.duckdns.org/health', timeout=5)
+        nginx_response = requests.get('https://pe-week1-temitope.duckdns.org/health')
         if nginx_response.status_code == 200:
             statuses.append({'service': 'Nginx', 'status': 'Operational'})
         else:
