@@ -201,10 +201,18 @@ def error_handler(*args):
 @app.route('/health', methods=['GET'])
 def health_check():
     statuses = []
+
+    # Check the main application (self-check)
+    try:
+        mydb.connect(reuse_if_open=True)
+        mydb.execute_sql('SELECT 1')
+        statuses.append({'service': 'Database', 'status': 'Operational'})
+    except Exception as e:
+        statuses.append({'service': 'Database', 'status': f'Error: {str(e)}'})
     
     # Check the Nginx service
     try:
-        nginx_response = requests.get('http://nginx/health', timeout=5)
+        nginx_response = requests.get('https://pe-week1-temitope.duckdns.org/health', timeout=5)
         if nginx_response.status_code == 200:
             statuses.append({'service': 'Nginx', 'status': 'Operational'})
         else:
