@@ -216,7 +216,7 @@ def health_check():
         if response.status_code == 200:
             statuses.append({'service': 'Nginx', 'status': 'Operational'})
         else:
-            statuses.append({'service': 'Nginx', 'status': 'Error: Non-200 response'})
+            statuses.append({'service': 'Nginx', 'status': f'Error: Non-200 response ({response.status_code})'})
     except Exception as e:
         statuses.append({'service': 'Nginx', 'status': f'Error: {str(e)}'})
 
