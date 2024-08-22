@@ -212,7 +212,7 @@ def health_check():
     
     # Check Nginx
     try:
-        response = requests.get('http://localhost:80')
+        response = requests.get('https://nginx', allow_redirects=True)
         if response.status_code == 200:
             statuses.append({'service': 'Nginx', 'status': 'Operational'})
         else:
