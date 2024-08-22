@@ -209,16 +209,6 @@ def health_check():
         statuses.append({'service': 'Database', 'status': 'Operational'})
     except Exception as e:
         statuses.append({'service': 'Database', 'status': f'Error: {str(e)}'})
-    
-    # Check the Nginx service
-    try:
-        nginx_response = requests.get('https://pe-week1-temitope.duckdns.org/health')
-        if nginx_response.status_code == 200:
-            statuses.append({'service': 'Nginx', 'status': 'Operational'})
-        else:
-            statuses.append({'service': 'Nginx', 'status': f'Error: Status code {nginx_response.status_code}'})
-    except Exception as e:
-        statuses.append({'service': 'Nginx', 'status': f'Error: {str(e)}'})
 
     # Put the health status in a template
     overall_status = all(service['status'] == 'Operational' for service in statuses)
